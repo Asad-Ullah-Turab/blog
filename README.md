@@ -29,7 +29,7 @@
 
    - [ ] Design Single Blog page
    - [ ] Display blog content
-   - [ ] Implement comment functionality[Optional]
+   - [ ] Implement comment functionality
 
 6. **Create Blog Page**
 
