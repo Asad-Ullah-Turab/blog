@@ -1,60 +1,77 @@
 import { Client, Account, ID } from "appwrite";
 import appwriteConfig from "../config";
 
-const client = new Client()
-  .setEndpoint(appwriteConfig.endpoint)
-  .setProject(appwriteConfig.projectId);
-
-const account = new Account(client);
-
 class AuthService {
-  async login(email, password) {
+  client;
+  account;
+
+  constructor() {
+    this.client = new Client()
+      .setEndpoint(appwriteConfig.endpoint)
+      .setProject(appwriteConfig.projectId);
+
+    this.account = new Account(this.client);
+  }
+
+  async login({ email, password }) {
     // Get the user from the database
     // If the user exists, return the user
     // Otherwise, return null
     try {
-      const session = await account
+      const user = await this.account
         .createEmailPasswordSession(email, password)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-      console.log(session);
-      return session;
+
+      if (user) return user;
+      else return null;
     } catch (e) {
-      console.log("Error in src/services/authService.jsx: ", e);
+      console.log("Error in authServive :: login: ", e);
     }
   }
 
   async logout() {
     // Remove the user from the session
     try {
-      const result = await account.deleteSession("current");
+      const result = await this.account.deleteSession("current");
       return result;
     } catch (e) {
-      console.log("Error in src/services/authService.jsx: ", e);
+      console.log("Error in authServive :: logout: ", e);
     }
   }
 
   async register({ email, password, name }) {
     // Register the user in the database
     try {
-      const result = await account.create(ID.unique(), email, password, name);
-      return result;
+      const result = await this.account.create(
+        ID.unique(),
+        email,
+        password,
+        name
+      );
+      if (result) return result;
+      else return null;
     } catch (e) {
-      console.log("Error in src/services/authService.jsx: ", e);
+      console.log("Error in authServive :: register: ", e);
     }
   }
 
   async getCurrentUser() {
     // Get the user from the session
     try {
-      const result = await account.getSession("current");
-      return result;
+      const result = await this.account.getSession("current");
+      if (result) return result;
+      else return null;
     } catch (e) {
-      console.log("Error in src/services/authService.jsx: ", e);
+      console.log("Error in authServive :: getCurrentUser: ", e);
     }
   }
 
   changePassword(oldPassword, newPassword, userId) {
     // Change the user's password
+    console.log(oldPassword, newPassword, userId);
   }
 }
+
+const authService = new AuthService();
+export default authService;
