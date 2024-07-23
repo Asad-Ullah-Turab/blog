@@ -2,7 +2,7 @@
 
 1. **Initialize Project**
    - [x] Set up React project
-   - [ ] Set up Appwrite backend
+   - [x] Set up Appwrite backend
    - [ ] Configure basic routing with React Router
 
 ### Authentication
