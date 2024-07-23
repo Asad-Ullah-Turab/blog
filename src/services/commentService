@@ -1,0 +1,88 @@
+import { Client, Databases, ID } from "appwrite";
+import appwriteConfig from "../config";
+
+class CommentService {
+  client;
+  databases;
+  CommentService() {
+    this.client = new Client()
+      .setEndpoint(appwriteConfig.endpoint)
+      .setProject(appwriteConfig.projectId);
+    this.databases = new Databases(this.client);
+  }
+
+  async createComment({ title, content, authorId }) {
+    try {
+      const result = await this.databases.createDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId,
+        ID.unique(),
+        {
+          title,
+          content,
+          authorId,
+        }
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: createComment: ", e);
+    }
+  }
+  async deleteComment({ documentId }) {
+    try {
+      const result = await this.databases.deleteDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId,
+        documentId
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: deleteComment: ", e);
+    }
+  }
+  async getComment({ documentId }) {
+    try {
+      const result = await this.databases.getDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId,
+        documentId
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: getComment: ", e);
+    }
+  }
+  async updateComment(documentId, { title, content, authorId }) {
+    try {
+      const result = await this.databases.updateDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId,
+        documentId,
+        {
+          title,
+          content,
+          authorId,
+        }
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: updateComment: ", e);
+    }
+  }
+  async listComments() {
+    try {
+      const result = await this.databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: listComments: ", e);
+    }
+  }
+}
