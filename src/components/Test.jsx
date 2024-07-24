@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import authService from "../services/authService";
 import blogService from "../services/blogService";
 import { Account } from "appwrite";
+import commentService from "../services/commentService";
 
 export default function Test() {
   const [user, setUser] = useState();
@@ -35,9 +36,9 @@ export default function Test() {
     const getCurrentUser = async () => {
       const userData = await authService.getCurrentUser();
       setUser(userData);
-      console.log(userData);
+      // console.log(userData);
     };
-    // getCurrentUser();
+    getCurrentUser();
 
     // Blog Testing
     const createBlog = async () => {
@@ -83,7 +84,18 @@ export default function Test() {
       const result = await blogService.listBlogs();
       console.log(result);
     };
-    listBlogs();
+    // listBlogs();
+
+    // Comment Service Testing
+    const createComment = async () => {
+      const result = await commentService.createComment({
+        blogId: "66a119e0000f205f0991",
+        authorId: "updated 23 author id",
+        content: "test content 5",
+      });
+      console.log(result);
+    };
+    // createComment();
   }, []); // Empty dependency array means this effect runs once after the initial render
 
   return (
