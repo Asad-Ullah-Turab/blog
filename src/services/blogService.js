@@ -63,10 +63,8 @@ class BlogService {
       console.log("Error in DatabaseService :: getBlog: ", e);
     }
   }
-  async updateBlog(
-    documentId,
-    { title, content, authorId, createdAt, featuredImage }
-  ) {
+  async updateBlog(documentId, { title, content, authorId, featuredImage }) {
+    this.today = new Date();
     try {
       const result = await this.databases.updateDocument(
         appwriteConfig.databaseId,
@@ -76,7 +74,6 @@ class BlogService {
           title,
           content,
           authorId,
-          createdAt,
           updatedAt: this.today.toISOString(),
           featuredImage,
         }

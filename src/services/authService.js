@@ -18,15 +18,15 @@ class AuthService {
     // If the user exists, return the user
     // Otherwise, return null
     try {
-      const user = await this.account
-        .createEmailPasswordSession(email, password)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
-
+      const user = await this.account.createEmailPasswordSession(
+        email,
+        password
+      );
       if (user) return user;
-      else return null;
+      else return false;
     } catch (e) {
       console.log("Error in authServive :: login: ", e);
+      return false;
     }
   }
 
@@ -37,6 +37,7 @@ class AuthService {
       return result;
     } catch (e) {
       console.log("Error in authServive :: logout: ", e);
+      return false;
     }
   }
 
@@ -53,18 +54,19 @@ class AuthService {
         return this.login({ email, password });
       } else return null;
     } catch (e) {
-      console.log("Error in authServive :: register: ", e);
+      console.log("Error in authServive :: register: ", e.message);
     }
   }
 
   async getCurrentUser() {
     // Get the user from the session
     try {
-      const result = await this.account.getSession("current");
+      const result = await this.account.get("current");
       if (result) return result;
-      else return null;
+      else return false;
     } catch (e) {
       console.log("Error in authServive :: getCurrentUser: ", e);
+      return false;
     }
   }
 

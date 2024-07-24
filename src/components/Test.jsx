@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import authService from "../services/authService";
 import blogService from "../services/blogService";
+import { Account } from "appwrite";
 
 export default function Test() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
+    // Auth Testing
     const login = async () => {
       try {
         const userData = await authService.login({
-          email: "asadullahturab47@gmail.com",
-          password: "a1b2c3d4@",
+          email: "test1@gmail.com",
+          password: "test1test1",
         });
         setUser(userData);
       } catch (error) {
@@ -20,11 +22,29 @@ export default function Test() {
       }
     };
     // login();
+    const registerUser = async () => {
+      const userData = await authService.register({
+        email: "test1@gmail.com",
+        password: "test1test1",
+        name: "Test Dummy",
+      });
+      console.log("User Data: " + userData);
+    };
+    // registerUser();
+    // authService.logout();
+    const getCurrentUser = async () => {
+      const userData = await authService.getCurrentUser();
+      setUser(userData);
+      console.log(userData);
+    };
+    // getCurrentUser();
+
+    // Blog Testing
     const createBlog = async () => {
       try {
         const blogData = await blogService.createBlog({
-          title: "Test Blog",
-          content: "Hui Hui",
+          title: "Test Blog 2",
+          content: "lol lol",
           authorId: "testing id",
           featuredImage: "featured image testing",
           isPublished: true,
@@ -36,13 +56,41 @@ export default function Test() {
       }
     };
     // createBlog();
+    const deleteBlog = async () => {
+      const result = await blogService.deleteBlog({
+        documentId: "66a0ab8d0015758e4c55",
+      });
+    };
+    // deleteBlog();
+    const getBlog = async () => {
+      const result = await blogService.getBlog({
+        documentId: "66a119e0000f205f0991",
+      });
+      console.log(result);
+    };
+    // getBlog();
+    const updateBlog = async () => {
+      const result = await blogService.updateBlog("66a119e0000f205f0991", {
+        title: "Updated Title",
+        content: "Updated Content",
+        authorId: "Updated Author ID",
+        featuredImage: "Updated Featured Image",
+      });
+      console.log(result);
+    };
+    // updateBlog();
+    const listBlogs = async () => {
+      const result = await blogService.listBlogs();
+      console.log(result);
+    };
+    listBlogs();
   }, []); // Empty dependency array means this effect runs once after the initial render
 
-  console.log(user);
   return (
     <div>
       <h1>Test</h1>
-      <h1>{user.name}</h1>
+      <h1>{user && user.name}</h1>
+      <h1>{user && user.$id}</h1>
       <h1>{blog && blog.content}</h1>
     </div>
   );
