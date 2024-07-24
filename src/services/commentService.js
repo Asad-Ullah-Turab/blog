@@ -4,7 +4,7 @@ import appwriteConfig from "../config";
 class CommentService {
   client;
   databases;
-  CommentService() {
+  constructor() {
     this.client = new Client()
       .setEndpoint(appwriteConfig.endpoint)
       .setProject(appwriteConfig.projectId);

@@ -1,9 +1,10 @@
 import "./App.css";
+import { Test } from "./components";
 
 function App() {
   return (
     <div>
-      <h1>Appwrite Blog</h1>
+      <Test />
     </div>
   );
 }

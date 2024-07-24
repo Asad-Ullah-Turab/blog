@@ -6,7 +6,7 @@ class BlogService {
   databases;
   today;
 
-  BlogService() {
+  constructor() {
     this.client = new Client()
       .setEndpoint(appwriteConfig.endpoint)
       .setProject(appwriteConfig.projectId);
