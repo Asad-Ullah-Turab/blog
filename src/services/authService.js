@@ -49,8 +49,9 @@ class AuthService {
         password,
         name
       );
-      if (result) return result;
-      else return null;
+      if (result) {
+        return this.login({ email, password });
+      } else return null;
     } catch (e) {
       console.log("Error in authServive :: register: ", e);
     }

@@ -1,4 +1,4 @@
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 import appwriteConfig from "../config";
 
 class CommentService {
@@ -11,16 +11,17 @@ class CommentService {
     this.databases = new Databases(this.client);
   }
 
-  async createComment({ title, content, authorId }) {
+  async createComment({ blogId, authorId, content }) {
     try {
       const result = await this.databases.createDocument(
         appwriteConfig.databaseId,
         appwriteConfig.commentsId,
         ID.unique(),
         {
-          title,
-          content,
+          blogId,
           authorId,
+          content,
+          createdAt: new Date().toISOString(),
         }
       );
       if (result) return result;
@@ -55,16 +56,17 @@ class CommentService {
       console.log("Error in DatabaseService :: getComment: ", e);
     }
   }
-  async updateComment(documentId, { title, content, authorId }) {
+  async updateComment(documentId, { blogId, authorId, content, createdAt }) {
     try {
       const result = await this.databases.updateDocument(
         appwriteConfig.databaseId,
         appwriteConfig.commentsId,
         documentId,
         {
-          title,
-          content,
+          blogId,
           authorId,
+          content,
+          createdAt,
         }
       );
       if (result) return result;
@@ -85,4 +87,21 @@ class CommentService {
       console.log("Error in DatabaseService :: listComments: ", e);
     }
   }
+
+  async getCommentForBlog({ blogId }) {
+    try {
+      const result = await this.databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.commentsId,
+        [Query.equal("blogId", blogId)]
+      );
+      if (result) return result;
+      else return null;
+    } catch (e) {
+      console.log("Error in DatabaseService :: getCommentForBlog: ", e);
+    }
+  }
 }
+
+const commentService = new CommentService();
+export default commentService;

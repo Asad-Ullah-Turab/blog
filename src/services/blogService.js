@@ -4,6 +4,8 @@ import appwriteConfig from "../config";
 class BlogService {
   client;
   databases;
+  today;
+
   BlogService() {
     this.client = new Client()
       .setEndpoint(appwriteConfig.endpoint)
@@ -11,7 +13,9 @@ class BlogService {
     this.databases = new Databases(this.client);
   }
 
-  async createBlog({ title, content, featuredImage, authorId }) {
+  async createBlog({ title, content, authorId, featuredImage, isPublished }) {
+    this.today = new Date();
+
     try {
       const result = await this.databases.createDocument(
         appwriteConfig.databaseId,
@@ -20,8 +24,11 @@ class BlogService {
         {
           title,
           content,
-          featuredImage,
           authorId,
+          createdAt: this.today.toISOString(),
+          updatedAt: this.today.toISOString(),
+          featuredImage,
+          isPublished,
         }
       );
       if (result) return result;
@@ -56,7 +63,10 @@ class BlogService {
       console.log("Error in DatabaseService :: getBlog: ", e);
     }
   }
-  async updateBlog(documentId, { title, content, featuredImage, authorId }) {
+  async updateBlog(
+    documentId,
+    { title, content, authorId, createdAt, featuredImage }
+  ) {
     try {
       const result = await this.databases.updateDocument(
         appwriteConfig.databaseId,
@@ -65,8 +75,10 @@ class BlogService {
         {
           title,
           content,
-          featuredImage,
           authorId,
+          createdAt,
+          updatedAt: this.today.toISOString(),
+          featuredImage,
         }
       );
       if (result) return result;
