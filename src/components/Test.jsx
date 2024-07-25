@@ -93,9 +93,45 @@ export default function Test() {
         authorId: "updated 23 author id",
         content: "test content 5",
       });
-      console.log(result);
     };
     // createComment();
+    const delComment = async () => {
+      const result = await commentService.deleteComment({
+        documentId: "66a11e8e0001de0c3e40",
+      });
+    };
+    // delComment();
+    const getComent = async () => {
+      const result = await commentService.getComment({
+        documentId: "66a11e6b000f31c30e2c",
+      });
+      console.log(result);
+    };
+    // getComent();
+    const updateComment = async () => {
+      const result = await commentService.updateComment(
+        "66a11e920020a54f799c",
+        {
+          blogId: "66a119e0000f205f0991",
+          authorId: "updated Hui Hui author id",
+          content: "test content 5",
+        }
+      );
+      console.log(result);
+    };
+    // updateComment();
+    const listComments = async () => {
+      const result = await commentService.listComments();
+      console.log(result);
+    };
+    // listComments();
+    const getCommentForBlog = async () => {
+      const result = await commentService.getCommentsForBlog({
+        blogId: "66a119e0000f205f0991",
+      });
+      console.log(result);
+    };
+    // getCommentForBlog();
   }, []); // Empty dependency array means this effect runs once after the initial render
 
   return (

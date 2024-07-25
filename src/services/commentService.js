@@ -56,7 +56,7 @@ class CommentService {
       console.log("Error in DatabaseService :: getComment: ", e);
     }
   }
-  async updateComment(documentId, { blogId, authorId, content, createdAt }) {
+  async updateComment(documentId, { blogId, authorId, content }) {
     try {
       const result = await this.databases.updateDocument(
         appwriteConfig.databaseId,
@@ -66,7 +66,6 @@ class CommentService {
           blogId,
           authorId,
           content,
-          createdAt,
         }
       );
       if (result) return result;
@@ -88,7 +87,7 @@ class CommentService {
     }
   }
 
-  async getCommentForBlog({ blogId }) {
+  async getCommentsForBlog({ blogId }) {
     try {
       const result = await this.databases.listDocuments(
         appwriteConfig.databaseId,
