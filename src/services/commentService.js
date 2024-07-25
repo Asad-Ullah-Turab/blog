@@ -1,5 +1,5 @@
 import { Client, Databases, ID, Query } from "appwrite";
-import appwriteConfig from "../config";
+import appwriteConfig from "../config/config";
 
 class CommentService {
   client;

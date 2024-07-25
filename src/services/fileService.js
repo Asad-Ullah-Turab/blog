@@ -1,5 +1,5 @@
 import { Client, ID, Storage } from "appwrite";
-import appwriteConfig from "../config";
+import appwriteConfig from "../config/config";
 
 class FileService {
   client;

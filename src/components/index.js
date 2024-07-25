@@ -1,5 +1,5 @@
-import Test from "./Test";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Test from "./test";
+import Header from "./Header";
+import Footer from "./Footer";
 
-export { Test, Home, Login };
+export { Test, Header, Footer };
