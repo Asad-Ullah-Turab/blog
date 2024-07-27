@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { login, logout } from "./features/authSlice";
-import authService from "./services/authService";
 import { useDispatch } from "react-redux";
-import Header from "./components/Header";
+import authService from "./services/authService";
+import { login, logout } from "./features/authSlice";
+import { Header, Footer } from "./components";
+import Home from "./pages/Home";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,13 +26,14 @@ function App() {
     getUser();
   }, [dispatch]);
 
-  return !loading ? (
+  <div>Hello {user ? user.name : "Stranger"}</div>;
+
+  return (
     <div>
       <Header />
-      <div>Hello {user ? user.name : "Stranger"}</div>
+      {loading ? <div>Loading...</div> : <Outlet />}
+      <Footer />
     </div>
-  ) : (
-    <div>Loading...</div>
   );
 }
 

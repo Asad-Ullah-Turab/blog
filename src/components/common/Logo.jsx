@@ -5,7 +5,7 @@ export default function Logo({
 }) {
   return (
     <div>
-      <h1 className="font-serif">Blog</h1>
+      <h1 className="font-serif text-black px-11">Blog</h1>
     </div>
   );
 }
