@@ -3,6 +3,7 @@ import "./App.css";
 import { login, logout } from "./features/authSlice";
 import authService from "./services/authService";
 import { useDispatch } from "react-redux";
+import Header from "./components/Header";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,10 @@ function App() {
   }, [dispatch]);
 
   return !loading ? (
-    <div>Hello {user ? user.name : "Stranger"}</div>
+    <div>
+      <Header />
+      <div>Hello {user ? user.name : "Stranger"}</div>
+    </div>
   ) : (
     <div>Loading...</div>
   );
