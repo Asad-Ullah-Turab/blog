@@ -4,7 +4,7 @@ export default function Button({ children, className = "", ...props }) {
   return (
     <div className="inline-block">
       <button
-        className={`p-5 rounded-xl mx-5 ${className} bg-blue-500`}
+        className={`rounded-3xl ${className} bg-border text-white font-bold px-6 py-3 ${className}`}
         {...props}
       >
         {children}
