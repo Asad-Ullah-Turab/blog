@@ -7,10 +7,10 @@ export default function HeaderLink({
   ...props
 }) {
   return (
-    <div className={`text-center`}>
+    <div className={`text-center hover:text-secondary`}>
       <NavLink
         className={({ isActive }) =>
-          `text-header-link font-bold text-lg hover:text-secondary transition-colors delay-75 ${
+          `text-header-link font-bold text-lg hover:text-inherit transition-colors delay-75 ${
             isActive ? "text-secondary" : ""
           } ${className}`
         }
