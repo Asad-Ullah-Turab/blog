@@ -2,6 +2,9 @@ import { useState } from "react";
 import Button from "./common/Button";
 import HeaderLink from "./common/HeaderLink";
 import Logo from "./common/Logo";
+import { UisBars } from "@iconscout/react-unicons-solid";
+import { getTailwindColor } from "../utils/getTailwindColor";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -12,9 +15,13 @@ export default function Header() {
 
   return (
     <div className="flex bg-primary justify-between content-center items-center h-20 md-2:px-10 px-5">
-      <div className="flex-1 flex">
-        <h1>Burger</h1>
-        <Logo width="100px" />
+      <div className="flex-1 flex items-center">
+        <button className="md-2:hidden" onClick={toggleSidebar}>
+          <UisBars size="40" color={getTailwindColor("secondary")} />
+        </button>
+        <Link to="/">
+          <Logo width="100px" />
+        </Link>
       </div>
       <div className="flex-1 justify-between flex">
         <div className="md-2:flex hidden flex-1 space-x-12 items-center mr-12">
@@ -33,6 +40,7 @@ export default function Header() {
           <Button className="whitespace-nowrap">Sign Up</Button>
         </div>
       </div>
+      {/* <Sidebar /> */}
     </div>
   );
 }
