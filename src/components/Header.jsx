@@ -34,11 +34,14 @@ export default function Header() {
         <div className="flex flex-1 items-center">
           <HeaderLink
             path="/login"
-            className="border-border md-2:pl-12 pl-8 border-l-2 pr-7"
+            className="border-border md-2:pl-12 md-2:block pl-8 border-l-2 pr-7 hidden"
           >
             Login
           </HeaderLink>
-          <Button className="whitespace-nowrap">Sign Up</Button>
+          <Button className="whitespace-nowrap hidden md-2:block">
+            Sign Up
+          </Button>
+          <Button className="whitespace-nowrap md-2:hidden">Get Started</Button>
         </div>
       </div>
       <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
