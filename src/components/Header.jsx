@@ -1,11 +1,19 @@
+import { useState } from "react";
 import Button from "./common/Button";
 import HeaderLink from "./common/HeaderLink";
 import Logo from "./common/Logo";
 
 export default function Header() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div className="flex bg-primary justify-between content-center items-center h-20 md-2:px-10 px-5">
-      <div className="flex-1">
+      <div className="flex-1 flex">
+        <h1>Burger</h1>
         <Logo width="100px" />
       </div>
       <div className="flex-1 justify-between flex">
