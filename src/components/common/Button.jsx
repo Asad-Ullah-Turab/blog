@@ -4,7 +4,7 @@ export default function Button({ children, className = "", ...props }) {
   return (
     <div className="inline-block">
       <button
-        className={`rounded-3xl ${className} bg-border text-white font-bold px-6 py-3 ${className}`}
+        className={`rounded-full hover:bg-blue-800 active:bg-border bg-border text-white font-medium px-6 py-3 ${className}`}
         {...props}
       >
         {children}

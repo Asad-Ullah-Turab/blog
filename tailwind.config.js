@@ -18,7 +18,8 @@ export default {
         border: "#25346B",
       },
       fontFamily: {
-        monserrat: ["Montserrat", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        openSans: ["Open Sans", "sans-serif"],
       },
     },
   },
