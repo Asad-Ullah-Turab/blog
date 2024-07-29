@@ -3,10 +3,31 @@ import { UisMultiply } from "@iconscout/react-unicons-solid";
 import { UisAngleLeft } from "@iconscout/react-unicons-solid";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import HeaderLink from "./common/HeaderLink";
+import { useEffect, useRef } from "react";
 
 export default function Sidebar({ open, toggleSidebar }) {
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target) &&
+        open
+      ) {
+        toggleSidebar();
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [open, toggleSidebar]);
+
   return (
     <div
+      ref={sidebarRef}
       className={`md-2:hidden top-0 left-0 bg-primary w-64 h-full z-50 fixed overflow-y-auto flex flex-col justify-between transform transition-transform duration-300 ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
