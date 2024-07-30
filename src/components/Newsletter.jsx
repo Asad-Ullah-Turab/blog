@@ -1,7 +1,7 @@
 export default function Newsletter() {
   return (
     <div>
-      <div className="bg-accent2 py-10 md-2:px-20 px-5 text-left md-2:mx-10">
+      <div className="bg-accent2 py-10 md-2:px-20 px-5 text-left md-2:mx-10 my-10">
         <div className="text-2xl font-montserrat text-secondary">
           Subscribe to our newsletter
         </div>

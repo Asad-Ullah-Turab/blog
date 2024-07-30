@@ -17,6 +17,7 @@ export default {
         accent2: "#1a1e1f",
         "card-bg": "#ffffff",
         border: "#25346B",
+        footerbtn: "#34383a",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

@@ -32,7 +32,7 @@ function App() {
     <div>
       <Header />
       {loading ? <div>Loading...</div> : <Outlet />}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

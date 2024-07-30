@@ -1,6 +1,6 @@
 import Logo from "./common/Logo";
-import { UisMultiply } from "@iconscout/react-unicons-solid";
-import { UisAngleLeft } from "@iconscout/react-unicons-solid";
+import { RiCloseLine } from "react-icons/ri";
+import { FaAngleLeft } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import HeaderLink from "./common/HeaderLink";
 import { useEffect, useRef } from "react";
@@ -35,7 +35,7 @@ export default function Sidebar({ open, toggleSidebar }) {
       <div className="pb-20">
         <div className="flex items-center h-20 px-5">
           <button onClick={toggleSidebar} className="hover:bg-gray-800">
-            <UisMultiply size="40" color={getTailwindColor("secondary")} />
+            <RiCloseLine size="30" color={getTailwindColor("secondary")} />
           </button>
           <Logo width="100px" />
         </div>
@@ -61,7 +61,7 @@ export default function Sidebar({ open, toggleSidebar }) {
           onClick={toggleSidebar}
           className="hover:bg-gray-800 rounded-full absolute right-5 bottom-5"
         >
-          <UisAngleLeft size="40" color={getTailwindColor("secondary")} />
+          <FaAngleLeft size="24" color={getTailwindColor("secondary")} />
         </button>
       </div>
     </div>

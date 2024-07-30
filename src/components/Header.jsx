@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "./common/Button";
 import HeaderLink from "./common/HeaderLink";
 import Logo from "./common/Logo";
-import { UisBars } from "@iconscout/react-unicons-solid";
+import { FaBars } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
@@ -19,7 +19,7 @@ export default function Header() {
       <div className="flex bg-primary justify-between content-center items-center h-20 md-2:px-10 px-5">
         <div className="flex-1 flex items-center">
           <button className="md-2:hidden" onClick={toggleSidebar}>
-            <UisBars size="40" color={getTailwindColor("secondary")} />
+            <FaBars size="24" color={getTailwindColor("secondary")} />
           </button>
           <Link to="/">
             <Logo width="100px" />
