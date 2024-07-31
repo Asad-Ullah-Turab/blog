@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthBtn, Footer, Logo } from "../components";
+import { FaGoogle } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa6";
 
 export default function Signup() {
   return (
@@ -14,7 +16,10 @@ export default function Signup() {
           <p className="text-5xl font-semibold mb-3">Sign Up</p>
           <p>
             Already have an account?
-            <Link className="text-blue-700"> Log In</Link>{" "}
+            <Link to={"/login"} className="text-blue-700">
+              {" "}
+              Log In
+            </Link>
           </p>
           <div className="my-14 md-2:flex">
             <div className="flex-1 flex flex-col space-y-7">
@@ -22,7 +27,9 @@ export default function Signup() {
               <input type="text" />
               <input type="text" />
               <input type="text" />
-              <button>Sign Up</button>
+              <button className="bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800">
+                Sign Up
+              </button>
             </div>
             <div className="flex md-2:flex-col md-2:items-baseline items-center flex-row justify-center md-2:mx-9 my-9 md-2:my-0">
               <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b border-slate-800 border-solid flex-1"></div>
@@ -30,8 +37,8 @@ export default function Signup() {
               <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b border-slate-800 border-solid flex-1"></div>
             </div>
             <div className="flex-1 flex flex-col space-y-3 justify-center">
-              <AuthBtn>halo</AuthBtn>
-              <AuthBtn>halo</AuthBtn>
+              <AuthBtn icon={FaGoogle}>Continue with Google</AuthBtn>
+              <AuthBtn icon={FaFacebookF}>Continue with Facebook</AuthBtn>
             </div>
           </div>
         </div>
