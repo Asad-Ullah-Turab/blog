@@ -40,7 +40,7 @@ export default function Header() {
           <button className="md-2:hidden" onClick={toggleSidebar}>
             <FaBars size="24" color={getTailwindColor("secondary")} />
           </button>
-          <Link to="/">
+          <Link to="/" className="md-2:mx-0 mx-5">
             <Logo width="100px" />
           </Link>
         </div>
@@ -59,10 +59,13 @@ export default function Header() {
             >
               Login
             </HeaderLink>
-            <Button className="whitespace-nowrap hidden md-2:block">
+            <Button
+              className="whitespace-nowrap hidden md-2:block"
+              to="/signup"
+            >
               Sign Up
             </Button>
-            <Button className="whitespace-nowrap md-2:hidden">
+            <Button className="whitespace-nowrap md-2:hidden" to="/signup">
               Get Started
             </Button>
           </div>

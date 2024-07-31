@@ -11,15 +11,21 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromChildren(
-    <Route path="/" element={<App />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/blogs" element={<div>Blog</div>} />
-      <Route path="/about" element={<div>About</div>} />
-      <Route path="/contact" element={<div>Contact</div>} />
-    </Route>
+    <>
+      <Route path="/" element={<App />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<div>Blog</div>} />
+        <Route path="/about" element={<div>About</div>} />
+        <Route path="/contact" element={<div>Contact</div>} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </>
   )
 );
 
