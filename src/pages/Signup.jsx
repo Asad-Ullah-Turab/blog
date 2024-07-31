@@ -1,11 +1,12 @@
-import { Logo } from "../components";
+import { Footer, Logo } from "../components";
 
 export default function Signup() {
   return (
-    <div>
-      <div className="m-4">
-        <Logo width="200px" />
+    <div className="h-screen w-screen md-2:px-10 px-5 py-5">
+      <div className="">
+        <Logo width="200px" className="" />
       </div>
+      <Footer />
     </div>
   );
 }
