@@ -4,6 +4,7 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import HeaderLink from "./common/HeaderLink";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ open, toggleSidebar }) {
   const sidebarRef = useRef(null);
@@ -56,7 +57,9 @@ export default function Sidebar({ open, toggleSidebar }) {
           <button onClick={toggleSidebar} className="hover:bg-gray-800">
             <RiCloseLine size="30" color={getTailwindColor("secondary")} />
           </button>
-          <Logo width="100px" />
+          <Link to="/" onClick={toggleSidebar}>
+            <Logo width="100px" className="mx-4" />
+          </Link>
         </div>
         <div className="flex flex-col justify-between">
           <div className="items-center space-y-10 mt-10 flex-1">

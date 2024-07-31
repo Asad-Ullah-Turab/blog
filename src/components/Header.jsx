@@ -5,7 +5,7 @@ import Logo from "./common/Logo";
 import { FaBars } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
