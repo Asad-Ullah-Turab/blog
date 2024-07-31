@@ -4,12 +4,10 @@ import { useDispatch } from "react-redux";
 import authService from "./services/authService";
 import { login, logout } from "./features/authSlice";
 import { Header, Footer } from "./components";
-import Home from "./pages/Home";
 import { Outlet } from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +19,6 @@ function App() {
         dispatch(logout());
       }
       setUser(user);
-      setLoading(false);
     };
     getUser();
   }, [dispatch]);
@@ -31,7 +28,7 @@ function App() {
   return (
     <div>
       <Header />
-      {loading ? <div>Loading...</div> : <Outlet />}
+      <Outlet />
       <Footer />
     </div>
   );

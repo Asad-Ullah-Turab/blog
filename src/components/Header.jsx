@@ -14,6 +14,25 @@ export default function Header() {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const headerLinks = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Blog",
+      path: "/blogs",
+    },
+    {
+      name: "About",
+      path: "/about",
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+    },
+  ];
+
   return (
     <div className="fixed top-0 left-0 right-0 z-10">
       <div className="flex bg-primary justify-between content-center items-center h-20 md-2:px-10 px-5">
@@ -27,10 +46,11 @@ export default function Header() {
         </div>
         <div className="flex">
           <div className="md-2:flex hidden flex-1 space-x-12 items-center mr-12">
-            <HeaderLink path="/">Home</HeaderLink>
-            <HeaderLink path="/blogs">Blog</HeaderLink>
-            <HeaderLink path="/about">About</HeaderLink>
-            <HeaderLink path="/contact">Contact</HeaderLink>
+            {headerLinks.map((link) => (
+              <HeaderLink key={link.name} path={link.path}>
+                {link.name}
+              </HeaderLink>
+            ))}
           </div>
           <div className="flex flex-1 items-center">
             <HeaderLink
