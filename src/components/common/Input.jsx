@@ -1,6 +1,6 @@
 import { forwardRef, useId } from "react";
 
-function Input({ type, placeholder, label, className, ref, ...props }) {
+function Input({ type, placeholder, label, className, ...props }, ref) {
   const id = useId();
   return (
     <div>

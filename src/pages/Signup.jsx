@@ -2,8 +2,22 @@ import { Link } from "react-router-dom";
 import { AuthBtn, Footer, Input, Logo } from "../components";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
+import { useForm } from "react-hook-form";
 
 export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const submit = (data) => {
+    console.log(data);
+  };
+
+  const password = watch("password");
+
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div className="md-2:px-10 px-5 py-5">
@@ -22,12 +36,42 @@ export default function Signup() {
             </Link>
           </p>
           <div className="my-14 md-2:flex">
-            <form className="flex-1">
+            <form className="flex-1" onSubmit={handleSubmit(submit)}>
               <div className="space-y-7">
-                <Input type="text" placeholder="First Name" />
-                <Input type="text" placeholder="First Name" />
-                <Input type="text" placeholder="First Name" />
-                <Input type="text" placeholder="First Name" />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  {...register("email", { required: "This field is required" })}
+                />
+                {errors.email && (
+                  <span className="text-red-500">{errors.email.message}</span>
+                )}
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
+                />
+                {errors.password && (
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                <Input
+                  type="password"
+                  placeholder="Confirm password"
+                  {...register("confirmPassword", {
+                    required: "This field is required",
+                    validate: (value) =>
+                      value === password || "The passwords do not match",
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-500">
+                    {errors.confirmPassword.message}
+                  </span>
+                )}
               </div>
               <button
                 type="submit"

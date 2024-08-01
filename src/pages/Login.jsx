@@ -2,8 +2,18 @@ import { Link } from "react-router-dom";
 import { AuthBtn, Footer, Input, Logo } from "../components";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const submit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div className="md-2:px-10 px-5 py-5">
@@ -22,10 +32,24 @@ export default function Login() {
             </Link>
           </p>
           <div className="my-14 md-2:flex">
-            <form className="flex-1">
+            <form className="flex-1" onSubmit={handleSubmit(submit)}>
               <div className="space-y-7">
-                <Input placeholder="Email" />
-                <Input placeholder="Password" />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  {...register("email", { required: true })}
+                />
+                {errors.email && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+                <Input
+                  placeholder="Password"
+                  type="password"
+                  {...register("password", { required: true })}
+                />
+                {errors.password && (
+                  <span className="text-red-500">This field is required</span>
+                )}
               </div>
               <button
                 type="submit"
