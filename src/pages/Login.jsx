@@ -5,7 +5,7 @@ import { FaFacebookF } from "react-icons/fa6";
 
 export default function Login() {
   return (
-    <div className="">
+    <div className="min-h-screen flex flex-col justify-between">
       <div className="md-2:px-10 px-5 py-5">
         <Link to="/">
           <Logo width="200px" className="" />
