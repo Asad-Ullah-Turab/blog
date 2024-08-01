@@ -22,19 +22,20 @@ export default function Signup() {
             </Link>
           </p>
           <div className="my-14 md-2:flex">
-            <div className="flex-1 space-y-7">
-              {/* <input type="text" />
-              <input type="text" />
-              <input type="text" />
-              <input type="text" /> */}
-              <Input type="text" placeholder="First Name" />
-              <Input type="text" placeholder="First Name" />
-              <Input type="text" placeholder="First Name" />
-              <Input type="text" placeholder="First Name" />
-              <button className="bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800">
+            <form className="flex-1">
+              <div className="space-y-7">
+                <Input type="text" placeholder="First Name" />
+                <Input type="text" placeholder="First Name" />
+                <Input type="text" placeholder="First Name" />
+                <Input type="text" placeholder="First Name" />
+              </div>
+              <button
+                type="submit"
+                className="mt-11 bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800"
+              >
                 Sign Up
               </button>
-            </div>
+            </form>
             <div className="flex md-2:flex-col md-2:items-baseline items-center flex-row justify-center md-2:mx-9 my-9 md-2:my-0">
               <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b border-solid flex-1"></div>
               <div className="md-2:mx-0 mx-4 md-2:my-2">or</div>
