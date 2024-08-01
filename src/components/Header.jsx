@@ -5,7 +5,7 @@ import Logo from "./common/Logo";
 import { FaBars } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -14,6 +14,25 @@ export default function Header() {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const headerLinks = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Blog",
+      path: "/blogs",
+    },
+    {
+      name: "About",
+      path: "/about",
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+    },
+  ];
+
   return (
     <div className="fixed top-0 left-0 right-0 z-10">
       <div className="flex bg-primary justify-between content-center items-center h-20 md-2:px-10 px-5">
@@ -21,16 +40,17 @@ export default function Header() {
           <button className="md-2:hidden" onClick={toggleSidebar}>
             <FaBars size="24" color={getTailwindColor("secondary")} />
           </button>
-          <Link to="/">
+          <Link to="/" className="md-2:mx-0 mx-5">
             <Logo width="100px" />
           </Link>
         </div>
         <div className="flex">
           <div className="md-2:flex hidden flex-1 space-x-12 items-center mr-12">
-            <HeaderLink path="/">Home</HeaderLink>
-            <HeaderLink path="/blogs">Blog</HeaderLink>
-            <HeaderLink path="/about">About</HeaderLink>
-            <HeaderLink path="/contact">Contact</HeaderLink>
+            {headerLinks.map((link) => (
+              <HeaderLink key={link.name} path={link.path}>
+                {link.name}
+              </HeaderLink>
+            ))}
           </div>
           <div className="flex flex-1 items-center">
             <HeaderLink
@@ -39,10 +59,13 @@ export default function Header() {
             >
               Login
             </HeaderLink>
-            <Button className="whitespace-nowrap hidden md-2:block">
+            <Button
+              className="whitespace-nowrap hidden md-2:block"
+              to="/signup"
+            >
               Sign Up
             </Button>
-            <Button className="whitespace-nowrap md-2:hidden">
+            <Button className="whitespace-nowrap md-2:hidden" to="/signup">
               Get Started
             </Button>
           </div>

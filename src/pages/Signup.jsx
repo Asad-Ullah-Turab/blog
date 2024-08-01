@@ -4,16 +4,20 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 
-export default function Login() {
+export default function Signup() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
   const submit = (data) => {
     console.log(data);
   };
+
+  const password = watch("password");
+
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div className="md-2:px-10 px-5 py-5">
@@ -23,12 +27,12 @@ export default function Login() {
       </div>
       <div className="flex justify-center">
         <div className="m-14 text-center max-w-5xl flex-1">
-          <p className="text-5xl font-semibold mb-3">Log In</p>
+          <p className="text-5xl font-semibold mb-3">Sign Up</p>
           <p>
-            Don&apos;t have an account?
-            <Link to={"/signup"} className="text-blue-700">
+            Already have an account?
+            <Link to={"/login"} className="text-blue-700">
               {" "}
-              Sign Up
+              Log In
             </Link>
           </p>
           <div className="my-14 md-2:flex">
@@ -37,31 +41,49 @@ export default function Login() {
                 <Input
                   type="email"
                   placeholder="Email"
-                  {...register("email", { required: true })}
+                  {...register("email", { required: "This field is required" })}
                 />
                 {errors.email && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-red-500">{errors.email.message}</span>
                 )}
                 <Input
-                  placeholder="Password"
                   type="password"
-                  {...register("password", { required: true })}
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
                 />
                 {errors.password && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                <Input
+                  type="password"
+                  placeholder="Confirm password"
+                  {...register("confirmPassword", {
+                    required: "This field is required",
+                    validate: (value) =>
+                      value === password || "The passwords do not match",
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-500">
+                    {errors.confirmPassword.message}
+                  </span>
                 )}
               </div>
               <button
                 type="submit"
-                className=" mt-11 bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800"
+                className="mt-11 bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800"
               >
-                Login
+                Sign Up
               </button>
             </form>
             <div className="flex md-2:flex-col md-2:items-baseline items-center flex-row justify-center md-2:mx-9 my-9 md-2:my-0">
               <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b border-solid flex-1"></div>
               <div className="md-2:mx-0 mx-4 md-2:my-2">or</div>
-              <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b border-solid flex-1"></div>
+              <div className="md-2:w-2 md-2:border-r md-2:border-b-0 border-b flex-1"></div>
             </div>
             <div className="flex-1 flex flex-col space-y-3 justify-center">
               <AuthBtn icon={FaGoogle}>Continue with Google</AuthBtn>
