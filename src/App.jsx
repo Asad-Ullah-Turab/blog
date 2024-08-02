@@ -23,8 +23,6 @@ function App() {
     getUser();
   }, [dispatch]);
 
-  <div>Hello {user ? user.name : "Stranger"}</div>;
-
   return (
     <div>
       <Header />

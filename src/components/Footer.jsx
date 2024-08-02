@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   return (
     <footer className="pt-20">
-      <div className="mx-10 p-10 flex flex-col items-center space-y-8">
+      <div className="md-2:mx-10 p-10 flex flex-col items-center space-y-8">
         <div className="flex space-x-2">
           <a
             href="https://www.linkedin.com/in/asadullah-turab-6946b2236/"
