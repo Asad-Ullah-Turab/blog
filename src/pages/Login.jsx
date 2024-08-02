@@ -22,7 +22,7 @@ export default function Login() {
         </Link>
       </div>
       <div className="flex justify-center">
-        <div className="m-14 text-center max-w-5xl flex-1">
+        <div className="my-14 md-2:mx-14 mx-8 text-center max-w-5xl flex-1">
           <p className="text-5xl font-semibold mb-3">Log In</p>
           <p>
             Don&apos;t have an account?
