@@ -6,12 +6,23 @@ import { FaBars } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import { Link } from "react-router-dom";
 import { Sidebar } from "./";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../features/authSlice";
+import authService from "../services/authService";
 
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const isLogged = useSelector((state) => state.auth.loginStatus);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleLogout = async () => {
+    const result = await authService.logout();
+    if (result) dispatch(logout());
   };
 
   const headerLinks = [
@@ -53,21 +64,29 @@ export default function Header() {
             ))}
           </div>
           <div className="flex flex-1 items-center">
-            <HeaderLink
-              path="/login"
-              className="border-border md-2:pl-12 md-2:block pl-8 border-l-2 pr-7 hidden"
-            >
-              Login
-            </HeaderLink>
-            <Button
-              className="whitespace-nowrap hidden md-2:block"
-              to="/signup"
-            >
-              Sign Up
-            </Button>
-            <Button className="whitespace-nowrap md-2:hidden" to="/signup">
-              Get Started
-            </Button>
+            {!isLogged ? (
+              <>
+                <HeaderLink
+                  path="/login"
+                  className="border-border md-2:pl-12 md-2:block pl-8 border-l-2 pr-7 hidden"
+                >
+                  Login
+                </HeaderLink>
+                <Button
+                  className="whitespace-nowrap hidden md-2:block"
+                  to="/signup"
+                >
+                  Sign Up
+                </Button>
+                <Button className="whitespace-nowrap md-2:hidden" to="/signup">
+                  Get Started
+                </Button>
+              </>
+            ) : (
+              <Button className="whitespace-nowrap" onClick={handleLogout}>
+                Log Out
+              </Button>
+            )}
           </div>
         </div>
         <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />

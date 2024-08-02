@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthBtn, Footer, Input, Logo } from "../components";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import authService from "../services/authService";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../features/authSlice";
 
 export default function Login() {
   const {
@@ -11,8 +15,24 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const submit = (data) => {
-    console.log(data);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const submit = async (data) => {
+    setError(null);
+    const session = await authService.login(data);
+    if (session) {
+      const user = await authService.getCurrentUser();
+      if (user) {
+        dispatch(login(user));
+        navigate("/");
+      } else {
+        setError("Invalid email or password");
+      }
+    } else {
+      setError("Invalid email or password");
+    }
   };
   return (
     <div className="min-h-screen flex flex-col justify-between">
@@ -45,11 +65,26 @@ export default function Login() {
                 <Input
                   placeholder="Password"
                   type="password"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: "This field is required",
+                    minLength: 8,
+                    maxLength: 256,
+                  })}
                 />
-                {errors.password && (
+                {errors.password && errors.password.type === "required" && (
                   <span className="text-red-500">This field is required</span>
                 )}
+                {errors.password && errors.password.type === "minLength" && (
+                  <span className="text-red-500">
+                    Password must be at least 8 characters long
+                  </span>
+                )}
+                {errors.password && errors.password.type === "maxLength" && (
+                  <span className="text-red-500">
+                    Password must be less than 256 characters long
+                  </span>
+                )}
+                {error && <p className="mt-5 text-red-500">{error}</p>}
               </div>
               <button
                 type="submit"
