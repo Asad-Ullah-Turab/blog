@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthBtn, Footer, Input, Logo } from "../components";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
+import authService from "../services/authService";
+import { useState } from "react";
+import { login } from "../features/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,8 +17,32 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
-  const submit = (data) => {
-    console.log(data);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+
+  const submit = async (data) => {
+    const { username, email, password } = data;
+    try {
+      const session = await authService.register({
+        email: email,
+        password: password,
+        name: username,
+      });
+
+      if (session) {
+        const user = await authService.getCurrentUser();
+        if (user) {
+          dispatch(login(user));
+          navigate("/blogs");
+        } else {
+          setError("Error in creating user");
+        }
+      } else {
+        setError("Error in creating user");
+      }
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   const password = watch("password");
@@ -39,6 +68,18 @@ export default function Signup() {
             <form className="flex-1" onSubmit={handleSubmit(submit)}>
               <div className="space-y-7">
                 <Input
+                  type="text"
+                  placeholder="Username"
+                  {...register("username", {
+                    required: "This field is required",
+                  })}
+                />
+                {errors.username && (
+                  <span className="text-red-500">
+                    {errors.username.message}
+                  </span>
+                )}
+                <Input
                   type="email"
                   placeholder="Email"
                   {...register("email", { required: "This field is required" })}
@@ -47,15 +88,25 @@ export default function Signup() {
                   <span className="text-red-500">{errors.email.message}</span>
                 )}
                 <Input
-                  type="password"
                   placeholder="Password"
+                  type="password"
                   {...register("password", {
                     required: "This field is required",
+                    minLength: 8,
+                    maxLength: 256,
                   })}
                 />
-                {errors.password && (
+                {errors.password && errors.password.type === "required" && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+                {errors.password && errors.password.type === "minLength" && (
                   <span className="text-red-500">
-                    {errors.password.message}
+                    Password must be at least 8 characters long
+                  </span>
+                )}
+                {errors.password && errors.password.type === "maxLength" && (
+                  <span className="text-red-500">
+                    Password must be less than 256 characters long
                   </span>
                 )}
                 <Input
@@ -73,6 +124,7 @@ export default function Signup() {
                   </span>
                 )}
               </div>
+              {error && <p className="mt-5 text-red-500">{error}</p>}
               <button
                 type="submit"
                 className="mt-11 bg-primary border-blue-700 border-2 w-24 rounded-full p-2 hover:bg-blue-700 active:bg-blue-800 active:border-blue-800"
