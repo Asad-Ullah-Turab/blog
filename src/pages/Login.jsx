@@ -26,7 +26,7 @@ export default function Login() {
       const user = await authService.getCurrentUser();
       if (user) {
         dispatch(login(user));
-        navigate("/");
+        navigate("/blogs");
       } else {
         setError("Invalid email or password");
       }

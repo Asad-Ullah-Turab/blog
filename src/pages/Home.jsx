@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux";
 import { Button, Newsletter } from "../components";
 export default function Home() {
+  const isLogged = useSelector((state) => state.auth.loginStatus);
   return (
     <div>
       <div className="max-w-full w-screen justify-center items-center flex bg-primary h-screen overflow-hidden">
@@ -12,7 +14,7 @@ export default function Home() {
           </div>
           <Button
             className="md-2:mt-10 mt-5 block md-2:text-3xl md-2:px-10 md-2:py-5 text-xl font-openSans"
-            to="/signup"
+            to={isLogged ? "/blogs" : "/signup"}
           >
             Get Started
           </Button>
