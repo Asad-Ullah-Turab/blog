@@ -68,6 +68,7 @@ export default function Sidebar({ open, toggleSidebar }) {
                 key={link.name}
                 onClick={toggleSidebar}
                 path={link.path}
+                className="md-2:text-base text-lg"
               >
                 {link.name}
               </HeaderLink>

@@ -41,10 +41,10 @@ export default function Footer() {
             <FaXTwitter size="24" color="white" />
           </a>
         </div>
-        <div>
+        <div className="md-2:text-base text-sm">
           &copy; {new Date().getFullYear()} Zephyr. All rights reserved.
         </div>
-        <div className="text-center">
+        <div className="text-center md-2:text-base text-sm">
           <p>
             Made with <span className="text-red-600">❤</span> by{" "}
           </p>
