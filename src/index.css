@@ -15,8 +15,8 @@ body {
 
 input,
 select {
-  color: #5a5a5a !important;
-  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #656565 !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
 }
