@@ -78,12 +78,18 @@ export default function Header() {
                 >
                   Sign Up
                 </Button>
-                <Button className="whitespace-nowrap md-2:hidden" to="/signup">
+                <Button
+                  className="whitespace-nowrap md-2:hidden text-sm"
+                  to="/signup"
+                >
                   Get Started
                 </Button>
               </>
             ) : (
-              <Button className="whitespace-nowrap" onClick={handleLogout}>
+              <Button
+                className="whitespace-nowrap text-sm md-2:text-base"
+                onClick={handleLogout}
+              >
                 Log Out
               </Button>
             )}
