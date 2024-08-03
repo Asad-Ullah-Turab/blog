@@ -16,7 +16,14 @@ body {
 input,
 select {
   color: #fff !important;
-  -webkit-text-fill-color: #656565 !important;
+  -webkit-text-fill-color: #fff !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
+}
+
+/* Placeholder styles */
+input::placeholder,
+select::placeholder {
+  color: gray;
+  opacity: 1; /* Ensures the color is not transparent */
 }
