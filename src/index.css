@@ -13,17 +13,17 @@ body {
   padding: 0px;
 }
 
-input,
+/* input,
 select {
-  color: #fff !important;
-  -webkit-text-fill-color: #656565 !important;
+  color: #af0000 !important;
+  -webkit-text-fill-color: #fff !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
-}
-
-/* Placeholder styles */
-input::placeholder,
-select::placeholder {
-  color: gray;
-  opacity: 1; /* Ensures the color is not transparent */
+} */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
 }
