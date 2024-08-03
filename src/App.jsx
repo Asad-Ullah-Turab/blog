@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { useDispatch } from "react-redux";
 import authService from "./services/authService";
@@ -7,7 +7,6 @@ import { Header, Footer } from "./components";
 import { Outlet } from "react-router-dom";
 
 function App() {
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +17,6 @@ function App() {
       } else {
         dispatch(logout());
       }
-      setUser(user);
     };
     getUser();
   }, [dispatch]);
