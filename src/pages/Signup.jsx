@@ -48,7 +48,7 @@ export default function Signup() {
   const password = watch("password");
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between text-white">
       <div className="md-2:px-10 px-5 py-5">
         <Link to="/">
           <Logo width="200px" className="" />
