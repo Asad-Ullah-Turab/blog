@@ -18,11 +18,11 @@ class AuthService {
     // If the user exists, return the user
     // Otherwise, return null
     try {
-      const user = await this.account.createEmailPasswordSession(
+      const session = await this.account.createEmailPasswordSession(
         email,
         password
       );
-      if (user) return user;
+      if (session) return session;
       else return false;
     } catch (e) {
       console.log("Error in authServive :: login: ", e);
@@ -52,9 +52,11 @@ class AuthService {
       );
       if (result) {
         return this.login({ email, password });
-      } else return null;
+      } else {
+        throw new Error("Error in creating user");
+      }
     } catch (e) {
-      console.log("Error in authServive :: register: ", e.message);
+      throw new Error(e.message);
     }
   }
 
