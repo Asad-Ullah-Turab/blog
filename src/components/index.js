@@ -8,6 +8,7 @@ import Newsletter from "./Newsletter";
 import Sidebar from "./Sidebar";
 import AuthBtn from "./common/AuthBtn";
 import Input from "./common/Input";
+import ProfileBtn from "./ProfileBtn";
 
 export {
   Test,
@@ -20,4 +21,5 @@ export {
   Sidebar,
   AuthBtn,
   Input,
+  ProfileBtn,
 };

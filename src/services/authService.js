@@ -1,5 +1,6 @@
 import { Client, Account, ID } from "appwrite";
 import appwriteConfig from "../config/config";
+import profileService from "./profileService";
 
 class AuthService {
   client;
@@ -51,7 +52,12 @@ class AuthService {
         name
       );
       if (result) {
-        return this.login({ email, password });
+        const session = await this.login({ email, password });
+        const profileResult = await profileService.createProfile({
+          userId: result.$id,
+        });
+        if (profileResult) return session;
+        else throw new Error("Error in creating profile");
       } else {
         throw new Error("Error in creating user");
       }

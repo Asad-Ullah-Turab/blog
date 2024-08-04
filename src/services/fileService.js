@@ -1,4 +1,4 @@
-import { Client, ID, Storage } from "appwrite";
+import { Client, ID, ImageGravity, Storage } from "appwrite";
 import appwriteConfig from "../config/config";
 
 class FileService {
@@ -38,6 +38,28 @@ class FileService {
       return false;
     }
   }
+  async getFeaturedImagePreview(
+    fileId,
+    width = 4000,
+    height = 4000,
+    quality = 100
+  ) {
+    try {
+      const result = await this.storage.getFilePreview(
+        appwriteConfig.featuredImageBucketId,
+        fileId,
+        width,
+        height,
+        ImageGravity.Center,
+        quality
+      );
+      if (result) return result;
+      else return false;
+    } catch (error) {
+      console.error("Failed to get profile pic preview:", error);
+      return false;
+    }
+  }
   async uploadProfilePic(file) {
     try {
       const result = await this.storage.createFile(
@@ -61,6 +83,28 @@ class FileService {
       return resut;
     } catch (error) {
       console.error("Failed to delete featured image:", error);
+      return false;
+    }
+  }
+  async getProfilePicPreview(
+    fileId,
+    width = 4000,
+    height = 4000,
+    quality = 100
+  ) {
+    try {
+      const result = await this.storage.getFilePreview(
+        appwriteConfig.profilePicBucketId,
+        fileId,
+        width,
+        height,
+        ImageGravity.Center,
+        quality
+      );
+      if (result) return result;
+      else return false;
+    } catch (error) {
+      console.error("Failed to get profile pic preview:", error);
       return false;
     }
   }
