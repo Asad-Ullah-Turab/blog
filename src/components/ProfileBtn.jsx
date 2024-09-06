@@ -17,6 +17,5 @@ export default function ProfileBtn() {
     };
     getProfilePic();
   }, [profilePicId]);
-  console.log(profilePic?.href);
   return !loading && <img src={profilePic.href} alt="Profile" />;
 }
