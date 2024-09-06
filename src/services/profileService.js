@@ -1,4 +1,4 @@
-import { Client, Databases, ID } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 import appwriteConfig from "../config/config";
 
 class ProfileService {
@@ -42,12 +42,12 @@ class ProfileService {
       console.log("Error in DatabaseService :: deleteProfile: ", e);
     }
   }
-  async getProfile({ documentId }) {
+  async getProfile(userId) {
     try {
-      const result = await this.databases.getDocument(
+      const result = await this.databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.profilesId,
-        documentId
+        [Query.equal("userId", userId)]
       );
       if (result) return result;
       else return null;

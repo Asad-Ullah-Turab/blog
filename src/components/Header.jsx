@@ -5,7 +5,7 @@ import Logo from "./common/Logo";
 import { FaBars } from "react-icons/fa6";
 import { getTailwindColor } from "../utils/getTailwindColor";
 import { Link } from "react-router-dom";
-import { Sidebar } from "./";
+import { ProfileBtn, Sidebar } from "./";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import authService from "../services/authService";
@@ -86,12 +86,13 @@ export default function Header() {
                 </Button>
               </>
             ) : (
-              <Button
-                className="whitespace-nowrap text-sm md-2:text-base"
-                onClick={handleLogout}
-              >
-                Log Out
-              </Button>
+              // <Button
+              //   className="whitespace-nowrap text-sm md-2:text-base"
+              //   onClick={handleLogout}
+              // >
+              //   Log Out
+              // </Button>
+              <ProfileBtn />
             )}
           </div>
         </div>
