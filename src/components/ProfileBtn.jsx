@@ -18,7 +18,7 @@ export default function ProfileBtn() {
     getProfilePic();
   }, [profilePicId]);
   return !loading &&
-    <div className="md-2:h-14 md-2:w-14 h-12 w-12 rounded-full overflow-hidden">
+    <div className="h-12 w-12 rounded-full overflow-hidden">
       <img src={profilePic.href} alt="Profile" />
     </div>
 }
