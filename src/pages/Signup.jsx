@@ -23,16 +23,19 @@ export default function Signup() {
   const submit = async (data) => {
     const { username, email, password } = data;
     try {
-      const session = await authService.register({
+      const profileData = await authService.register({
         email: email,
         password: password,
         name: username,
       });
 
-      if (session) {
+      if (profileData) {
         const user = await authService.getCurrentUser();
         if (user) {
-          dispatch(login(user));
+          dispatch(login({
+            userData: user,
+            profileData,
+          }));
           navigate("/blogs");
         } else {
           setError("Error in creating user");
