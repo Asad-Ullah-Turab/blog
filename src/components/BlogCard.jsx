@@ -1,8 +1,9 @@
-export default function BlogCard() {
+export default function BlogCard({ image, title, description }) {
   return (
-    <>
-      <h1>Blog</h1>
-      <h2>Blog description</h2>
-    </>
+    <div>
+      <img src={`${image}`} />
+      <p>{title}</p>
+      <p>{description}</p>
+    </div>
   )
 }
