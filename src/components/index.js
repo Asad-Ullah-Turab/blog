@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 import AuthBtn from "./common/AuthBtn";
 import Input from "./common/Input";
 import ProfileBtn from "./ProfileBtn";
+import BlogCard from "./BlogCard";
 
 export {
   Test,
@@ -22,4 +23,5 @@ export {
   AuthBtn,
   Input,
   ProfileBtn,
+  BlogCard,
 };

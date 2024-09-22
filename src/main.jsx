@@ -13,13 +13,14 @@ import {
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import Blogs from "./pages/Blogs.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromChildren(
     <>
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<div>Blog</div>} />
+        <Route path="/blogs" element={<Blogs/>} />
         <Route path="/about" element={<div>About</div>} />
         <Route path="/contact" element={<div>Contact</div>} />
       </Route>
