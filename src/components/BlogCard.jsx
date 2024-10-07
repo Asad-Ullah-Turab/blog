@@ -1,9 +1,8 @@
 export default function BlogCard({ image, title, description }) {
   return (
-    <div>
-      <img src={`${image}`} />
-      <p>{title}</p>
-      <p>{description}</p>
+    <div className="w-full">
+      <img src="/images/1.jpeg" />
+      <p>Hello</p>
     </div>
   )
 }
